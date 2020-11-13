@@ -58,11 +58,14 @@ out_text_lbl.grid(row=1, column=1, sticky="we")
 # Otvara prozor za odabir slikovne datoteke i vraća
 # apsolutnu putanju do adabrane datoteke
 def get_img_from_disk():
-    img_path = filedialog.askopenfilename()
-    in_img_tk = get_img_tk(img_path)
-    # Promjena trenutne slike na labelu za prikaz input slike
-    in_img_lbl.configure(image=in_img_tk)
-    in_img_lbl.image = in_img_tk
+    try:
+        img_path = filedialog.askopenfilename()
+        in_img_tk = get_img_tk(img_path)
+        # Promjena trenutne slike na labelu za prikaz input slike
+        in_img_lbl.configure(image=in_img_tk)
+        in_img_lbl.image = in_img_tk
+    except:
+        print("Input image not selected")
 
 load_img_btn = tk.Button(hide_msg_tab, text="Load input image", command=get_img_from_disk)
 load_img_btn.grid(row=2, column=0, sticky="w")
