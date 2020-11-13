@@ -6,9 +6,9 @@ poruke iz slika i upisivati skrivene poruke u slike.
 
 ## Dependency
 
-Za ispravan rad potrebni su slijedeći paketi:  
+Za ispravan rad potrebni su sljedeći paketi:  
 <ol>
-    <li>PIL</li>
+    <li>PIL (Pillow)</li>
     <li>numpy</li>
 </ol>  
 
@@ -20,10 +20,11 @@ Po potrebi potrebno je instalirati i wheel:
 
 ## Opis datoteka
 
-| message_find_gui.py | Grafičko sučelje programa napravljeno korištenjem tkintera. |
+| DATOTEKA            | OPIS                                                        |
 |---------------------|-------------------------------------------------------------|
+| message_find_gui.py | Grafičko sučelje programa napravljeno korištenjem tkintera. |
 | message_find.py     | Program za pronalazak skrivenih poruka u slikama.           |
-| message_hide.py     | Program za sakrivanje poruka u slikama.                     |  
+| message_hide.py     | Program za sakrivanje poruka u slikama.                     |
 
 ## Korištenje
 
@@ -38,5 +39,5 @@ Sakrivanje poruke:
 
 ## Autori
 
-Antonio Jurešić i Bruno Hradec  
+Antonio Jurešić i Bruno Hradec,  
 2020.
