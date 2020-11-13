@@ -6,7 +6,7 @@ from PIL import Image
 from PIL import ImageTk
 
 MIN_WIN_WIDTH = 600
-MIN_WIN_HEIGHT = 200
+MIN_WIN_HEIGHT = 275
 IMG_PLACEHOLDER_PATH = "./img/placeholder.png"
 
 # Učitava ulaznu sliku i prilagođava ju za prikaz u GUI-u
