@@ -12,10 +12,10 @@ Za ispravan rad potrebni su sljedeći paketi:
     <li>numpy</li>
 </ol>  
 
-Moguće ih je instalirati na slijedeći način:
-```pip install Pillow```   
-```pip install numpy```
-Po potrebi potrebno je instalirati i wheel:  
+Moguće ih je instalirati na slijedeći način:  
+```pip install Pillow```  
+```pip install numpy```  
+Po potrebi potrebno je instalirati i wheel:    
 ```pip install wheel```  
 
 ## Opis datoteka
