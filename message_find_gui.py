@@ -30,7 +30,7 @@ tab_parent = ttk.Notebook(main_window)
 
 # Tab parent sadrži tab za skrivanje i tab za otkrivanje poruke
 hide_msg_tab = ttk.Frame(main_window)
-find_msg_tab = ttk.Frame(main_window) 
+find_msg_tab = ttk.Frame(main_window)
 tab_parent.add(hide_msg_tab, text="Hide message")
 tab_parent.add(find_msg_tab, text="Find message")
 
@@ -38,23 +38,23 @@ tab_parent.add(find_msg_tab, text="Find message")
 tab_parent.pack(expand=1, fill="both")
 
 # Oba stupca u gridu taba za skrivanje poruke su jednako široka
-hide_msg_tab.columnconfigure(0, weight=1, uniform="group1")
-hide_msg_tab.columnconfigure(1, weight=1, uniform="group1")
+find_msg_tab.columnconfigure(0, weight=1, uniform="group1")
+find_msg_tab.columnconfigure(1, weight=1, uniform="group1")
 
-hide_in_lbl = tk.Label(hide_msg_tab, text="Input:")
-hide_out_lbl = tk.Label(hide_msg_tab, text="Output:")
-hide_in_lbl.grid(row=0, column=0, sticky="w")
-hide_out_lbl.grid(row=0, column=1, sticky="w")
+find_in_lbl = tk.Label(find_msg_tab, text="Input:")
+find_out_lbl = tk.Label(find_msg_tab, text="Output:")
+find_in_lbl.grid(row=0, column=0, sticky="w")
+find_out_lbl.grid(row=0, column=1, sticky="w")
 
 # Dohvaćanje placeholder slike u obliku pogodnom za tkinter
 in_img_tk = get_img_tk(current_img_path)
 
 # Label sa ulaznom slikom
-in_img_lbl = tk.Label(hide_msg_tab, image=in_img_tk)
+in_img_lbl = tk.Label(find_msg_tab, image=in_img_tk)
 in_img_lbl.grid(row=1, column=0, sticky="we")
 
 # Label sa izlaznim tekstom
-out_text_lbl = tk.Label(hide_msg_tab, text="output message", wraplength=MIN_WIN_WIDTH/2)
+out_text_lbl = tk.Label(find_msg_tab, text="output message", wraplength=MIN_WIN_WIDTH/2)
 out_text_lbl.grid(row=1, column=1, sticky="we")
 
 # Otvara prozor za odabir slikovne datoteke i vraća
@@ -73,7 +73,7 @@ def set_input_image():
     # Promjena trenutne slike na labelu za prikaz input slike
     in_img_lbl.configure(image=current_img_tk)        
         
-load_img_btn = tk.Button(hide_msg_tab, text="Load input image", command=set_input_image)
+load_img_btn = tk.Button(find_msg_tab, text="Load input image", command=set_input_image)
 load_img_btn.grid(row=2, column=0, sticky="w")
 
 main_window.mainloop()
