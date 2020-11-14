@@ -21,7 +21,7 @@ colors = pixels.flatten()
 chars_as_ints = string_to_ints(message_to_hide)
 
 current_index = 0
-for index, char in enumerate(chars_as_ints):
+for char in chars_as_ints:
     # Prvo se char u binarnom obliku komplementira
     complement = char ^ 0b11111111
     for i in range(8):
