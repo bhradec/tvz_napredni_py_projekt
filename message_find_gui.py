@@ -7,7 +7,9 @@ from PIL import ImageTk
 
 MIN_WIN_WIDTH = 600
 MIN_WIN_HEIGHT = 275
-IMG_PLACEHOLDER_PATH = "./img/placeholder.png"
+
+current_img_path = "./img/placeholder.png"
+current_img_tk = None
 
 # Učitava ulaznu sliku i prilagođava ju za prikaz u GUI-u
 def get_img_tk(img_path):
@@ -45,7 +47,7 @@ hide_in_lbl.grid(row=0, column=0, sticky="w")
 hide_out_lbl.grid(row=0, column=1, sticky="w")
 
 # Dohvaćanje placeholder slike u obliku pogodnom za tkinter
-in_img_tk = get_img_tk(IMG_PLACEHOLDER_PATH)
+in_img_tk = get_img_tk(current_img_path)
 
 # Label sa ulaznom slikom
 in_img_lbl = tk.Label(hide_msg_tab, image=in_img_tk)
@@ -57,17 +59,21 @@ out_text_lbl.grid(row=1, column=1, sticky="we")
 
 # Otvara prozor za odabir slikovne datoteke i vraća
 # apsolutnu putanju do adabrane datoteke
-def get_img_from_disk():
-    try:
-        img_path = filedialog.askopenfilename()
-        in_img_tk = get_img_tk(img_path)
-        # Promjena trenutne slike na labelu za prikaz input slike
-        in_img_lbl.configure(image=in_img_tk)
-        in_img_lbl.image = in_img_tk
-    except:
-        print("Input image not selected")
+def set_input_image():
+    global current_img_path
+    global current_img_tk
+    
+    img_path = filedialog.askopenfilename()
+    
+    if not img_path:
+        img_path = current_img_path
 
-load_img_btn = tk.Button(hide_msg_tab, text="Load input image", command=get_img_from_disk)
+    current_img_path = img_path
+    current_img_tk = get_img_tk(img_path)
+    # Promjena trenutne slike na labelu za prikaz input slike
+    in_img_lbl.configure(image=current_img_tk)        
+        
+load_img_btn = tk.Button(hide_msg_tab, text="Load input image", command=set_input_image)
 load_img_btn.grid(row=2, column=0, sticky="w")
 
-main_window.mainloop()	
+main_window.mainloop()
