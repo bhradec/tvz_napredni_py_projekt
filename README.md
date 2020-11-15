@@ -15,7 +15,7 @@ Za ispravan rad potrebni su sljedeći paketi:
 Moguće ih je instalirati na slijedeći način:  
 ```pip install Pillow```  
 ```pip install numpy```  
-U slučaju pogreške ako wheel nije instaliran:    
+U slučaju da wheel nije instaliran:    
 ```pip install wheel```  
 
 ## Opis datoteka
