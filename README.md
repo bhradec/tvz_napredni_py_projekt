@@ -22,20 +22,21 @@ U slučaju pogreške ako wheel nije instaliran:
 
 | DATOTEKA            | OPIS                                                        |
 |---------------------|-------------------------------------------------------------|
-| message_find_gui.py | Grafičko sučelje programa napravljeno korištenjem tkintera. |
-| message_find.py     | Program za pronalazak skrivenih poruka u slikama.           |
-| message_hide.py     | Program za sakrivanje poruka u slikama.                     |
+| hf_message_gui.py   | Grafičko sučelje programa napravljeno korištenjem tkintera. |
+| find_message.py     | Program za pronalazak skrivenih poruka u slikama.           |
+| hide_message.py     | Program za sakrivanje poruka u slikama.                     |
+| display_pixels.py   | Program za ispis RGB vrijednosti po retcima.                |
 
 ## Korištenje
 
 Pokretanje GUI-a:  
-```message_find_gui.py```  
+```hf_message_gui.py```  
 
 Pronalazak skrivene poruke:  
-```message_find.py source_image.png```  
+```find_message.py source_image.png```  
 
 Sakrivanje poruke:  
-```message_hide.py "tekst" dest_image.png```  
+```hide_message.py "tekst" dest_image.png```  
 
 ## Autori
 
