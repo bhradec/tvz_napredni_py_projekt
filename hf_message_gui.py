@@ -38,7 +38,7 @@ tab_parrent.pack(expand=1, fill="both")
 hide_in_label = tk.Label(hide_msg_tab, text="Input text:")
 hide_out_label = tk.Label(hide_msg_tab, text="Output image:")
 
-in_txt_entry = tk.Text(hide_msg_tab, height=8, width=35)
+in_txt_entry = tk.Text(hide_msg_tab, height=8, width=35, bg="black", fg="green2")
 out_img_entry = tk.Text(hide_msg_tab, height=1, width=35)
 out_img_btn = tk.Button(hide_msg_tab, text="Browse", command=browse_out_img_path)
 
@@ -55,7 +55,7 @@ find_out_label = tk.Label(find_msg_tab, text="Output text:")
 
 in_img_entry = tk.Text(find_msg_tab, height=1, width=35)
 in_img_btn = tk.Button(find_msg_tab, text="Browse", command=browse_in_img_path)
-out_txt_entry = tk.Text(find_msg_tab, height=8, width=35)
+out_txt_entry = tk.Text(find_msg_tab, height=8, width=35, bg="black", fg="green2")
 
 find_in_label.grid(row=0, column=0)
 find_out_label.grid(row=1, column=0, sticky="n")
