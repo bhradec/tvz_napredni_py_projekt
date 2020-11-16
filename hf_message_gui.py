@@ -63,6 +63,9 @@ in_img_entry.grid(row=0, column=1, sticky="we")
 in_img_btn.grid(row=0, column=2)
 out_txt_entry.grid(row=1, column=1, columnspan=2, sticky="we")
 
+# Text widget u koji se ispisuje izlazni tekst je read only
+out_txt_entry.configure(state=tk.DISABLED)
+
 # Prvi stupac svakog taba je iste duljine
 hide_msg_tab.columnconfigure(0, weight="1", uniform="first_columns")
 find_msg_tab.columnconfigure(0, weight="1", uniform="first_columns")
