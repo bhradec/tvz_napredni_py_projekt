@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from tkinter import *
+from tkinter import Label, Text, Button
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -33,18 +33,18 @@ def embed_message():
 def browse_out_img_path():
     global out_img_path
     out_img_path = tk.filedialog.askopenfilename()
-    out_img_entry.configure(state=tk.NORMAL)
+    out_img_entry.configure(state="normal")
     out_img_entry.delete(1.0, "end")
     out_img_entry.insert("end", out_img_path)
-    out_img_entry.configure(state=tk.DISABLED)
+    out_img_entry.configure(state="disabled")
 
 def browse_in_img_path():
     global in_img_path
     in_img_path = tk.filedialog.askopenfilename()
-    out_img_entry.configure(state=tk.NORMAL)
+    out_img_entry.configure(state="normal")
     in_img_entry.delete(1.0, "end")
     in_img_entry.insert("end", in_img_path)
-    out_img_entry.configure(state=tk.DISABLED)
+    out_img_entry.configure(state="disabled")
 
 main_window = tk.Tk()
 main_window.title("H/F message")
@@ -76,7 +76,7 @@ out_img_btn.grid(row=1, column=2)
 hide_msg_btn.grid(row=2, column=0, columnspan=3)
 
 # Text koji prikazuje putanju do slike je readonly
-out_img_entry.configure(state=tk.DISABLED)
+out_img_entry.configure(state="disabled")
 
 ############### FIND MESSAGE TAB #################
 
@@ -94,7 +94,7 @@ in_img_btn.grid(row=0, column=2)
 out_txt_entry.grid(row=1, column=1, columnspan=2, sticky="we")
 
 # Text widget u koji se ispisuje izlazni tekst je read only
-out_txt_entry.configure(state=tk.DISABLED)
+out_txt_entry.configure(state="disabled")
 
 # Prvi stupac svakog taba je iste duljine
 hide_msg_tab.columnconfigure(0, weight="1", uniform="first_columns")
