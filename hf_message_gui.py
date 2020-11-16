@@ -42,7 +42,7 @@ in_txt_entry = tk.Text(hide_msg_tab, height=8, width=35)
 out_img_entry = tk.Text(hide_msg_tab, height=1, width=35)
 out_img_btn = tk.Button(hide_msg_tab, text="Browse", command=browse_out_img_path)
 
-hide_in_label.grid(row=0, column=0)
+hide_in_label.grid(row=0, column=0, sticky="n")
 hide_out_label.grid(row=1, column=0)
 in_txt_entry.grid(row=0, column=1, columnspan=2, sticky="we")
 out_img_entry.grid(row=1, column=1, sticky="we")
@@ -58,9 +58,13 @@ in_img_btn = tk.Button(find_msg_tab, text="Browse", command=browse_in_img_path)
 out_txt_entry = tk.Text(find_msg_tab, height=8, width=35)
 
 find_in_label.grid(row=0, column=0)
-find_out_label.grid(row=1, column=0)
+find_out_label.grid(row=1, column=0, sticky="n")
 in_img_entry.grid(row=0, column=1, sticky="we")
 in_img_btn.grid(row=0, column=2)
 out_txt_entry.grid(row=1, column=1, columnspan=2, sticky="we")
+
+# Prvi stupac svakog taba je iste duljine
+hide_msg_tab.columnconfigure(0, weight="1", uniform="first_columns")
+find_msg_tab.columnconfigure(0, weight="1", uniform="first_columns")
 
 main_window.mainloop()
