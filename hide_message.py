@@ -2,6 +2,11 @@ import sys
 import numpy as np
 
 from PIL import Image
+from functools import reduce
+
+class MessageTooLongException(Exception):
+    def __init__(self):
+        super().__init__("Input message too long")
 
 def string_to_ints(chars):
     return [ord(c) for c in chars]
@@ -12,6 +17,11 @@ def hide_message(message, img_path):
     # Trodimenzionalna matrica: retci * stupci * RGB (3 vrijendosti)
     pixels = np.array(input_img)
     img_shape = pixels.shape
+
+    # Svaki znak u poruci ima 1 bajt. Iz tog razloga zauzima
+    # 8 pixela na slici.
+    if len(message) * 8 > reduce(lambda r, e: r * e, img_shape):
+        raise MessageTooLongException()
 
     # Trodimenzionalna matrica izravnana u jednodimenzionalnu listu
     colors = pixels.flatten()
@@ -50,7 +60,10 @@ if __name__ == "__main__":
     img_path = sys.argv[2]
 
     if message and img_path:
-        hide_message(message, img_path)
+        try:
+            hide_message(message, img_path)
+        except MessageTooLongException:
+            print("Message to long to hide in given image.")
     else:
         print("No message or image path given")
         print("Help: message_hide.py message img_path")
