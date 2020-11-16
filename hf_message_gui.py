@@ -1,79 +1,44 @@
 import tkinter as tk
 
+from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-from PIL import Image
-from PIL import ImageTk
 
-MIN_WIN_WIDTH = 600
-MIN_WIN_HEIGHT = 275
+from hide_message import hide_message
+from find_message import find_message
 
-current_img_path = "./img/placeholder.png"
-current_img_tk = None
+img_path = ""
 
-# Učitava ulaznu sliku i prilagođava ju za prikaz u GUI-u
-def get_img_tk(img_path):
-    in_img = Image.open(img_path)
-    # Postavljanje veličine slike na polovicu širine glavnog prozora
-    # Metoda thumbnail zadržava izvorne omjere visine i širine
-    in_img.thumbnail((MIN_WIN_WIDTH/2, MIN_WIN_WIDTH/2), Image.ANTIALIAS)
-    # Pretvaranje slike u oblik pogodan za prikaz s tkinterom
-    in_img_tk = ImageTk.PhotoImage(in_img)
-    return in_img_tk
+def browse_image_path():
+    global img_path
+    img_path = tk.filedialog.askopenfilename()
+    out_img_path.delete(1.0, tk.END)
+    out_img_path.insert(tk.END, img_path)
 
-# Stvaranje glavnog prozora
 main_window = tk.Tk()
-main_window.minsize(MIN_WIN_WIDTH, MIN_WIN_HEIGHT)
-main_window.title("Message finder")
 
-tab_parent = ttk.Notebook(main_window)
+tab_parrent = ttk.Notebook(main_window)
 
-# Tab parent sadrži tab za skrivanje i tab za otkrivanje poruke
 hide_msg_tab = ttk.Frame(main_window)
 find_msg_tab = ttk.Frame(main_window)
-tab_parent.add(hide_msg_tab, text="Hide message")
-tab_parent.add(find_msg_tab, text="Find message")
 
-# Tab parent zauzima cijelu širinu i visinu prozora
-tab_parent.pack(expand=1, fill="both")
+tab_parrent.add(hide_msg_tab, text="Hide message")
+tab_parrent.add(find_msg_tab, text="Find message")
+tab_parrent.pack(expand=1, fill="both")
 
-# Oba stupca u gridu taba za skrivanje poruke su jednako široka
-find_msg_tab.columnconfigure(0, weight=1, uniform="group1")
-find_msg_tab.columnconfigure(1, weight=1, uniform="group1")
+############### HIDE MESSAGE TAB #################
 
-find_in_lbl = tk.Label(find_msg_tab, text="Input:")
-find_out_lbl = tk.Label(find_msg_tab, text="Output:")
-find_in_lbl.grid(row=0, column=0, sticky="w")
-find_out_lbl.grid(row=0, column=1, sticky="w")
+hide_out_label = tk.Label(hide_msg_tab, text="Output image:")
+hide_in_label = tk.Label(hide_msg_tab, text="Input text:")
 
-# Dohvaćanje placeholder slike u obliku pogodnom za tkinter
-in_img_tk = get_img_tk(current_img_path)
+in_txt = tk.Text(hide_msg_tab, height=8, width=35)
+out_img_path = tk.Text(hide_msg_tab, height=1, width=35)
+browse_img_btn = tk.Button(hide_msg_tab, text="Browse", command=browse_image_path)
 
-# Label sa ulaznom slikom
-in_img_lbl = tk.Label(find_msg_tab, image=in_img_tk)
-in_img_lbl.grid(row=1, column=0, sticky="we")
-
-# Label sa izlaznim tekstom
-out_text_lbl = tk.Label(find_msg_tab, text="output message", wraplength=MIN_WIN_WIDTH/2)
-out_text_lbl.grid(row=1, column=1, sticky="we")
-
-# Otvara prozor za odabir slikovne datoteke i vraća
-# apsolutnu putanju do adabrane datoteke
-def set_input_image():
-    global current_img_path
-    global current_img_tk
-    
-    img_path = filedialog.askopenfilename()
-    
-    if not img_path:
-        img_path = current_img_path
-
-    current_img_path = img_path
-    current_img_tk = get_img_tk(img_path)
-    # Promjena trenutne slike na labelu za prikaz input slike
-    in_img_lbl.configure(image=current_img_tk)        
-        
-load_img_btn = tk.Button(find_msg_tab, text="Load input image", command=set_input_image)
-load_img_btn.grid(row=2, column=0, sticky="w")
+hide_in_label.grid(row=0, column=0)
+hide_out_label.grid(row=1, column=0)
+in_txt.grid(row=0, column=1, columnspan=2, sticky="we")
+out_img_path.grid(row=1, column=1, sticky="we")
+browse_img_btn.grid(row=1, column=2)
 
 main_window.mainloop()
