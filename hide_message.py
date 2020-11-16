@@ -6,7 +6,7 @@ from functools import reduce
 
 class MessageTooLongException(Exception):
     def __init__(self):
-        super().__init__("Input message too long")
+        super().__init__("Input message too long fro given image")
 
 def string_to_ints(chars):
     return [ord(c) for c in chars]
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         try:
             hide_message(message, img_path)
         except MessageTooLongException:
-            print("Message to long to hide in given image.")
+            print("Message is too long for given image")
     else:
         print("No message or image path given")
         print("Help: message_hide.py message img_path")
