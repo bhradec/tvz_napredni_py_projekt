@@ -75,7 +75,7 @@ out_img_entry.grid(row=1, column=1, sticky="we")
 out_img_btn.grid(row=1, column=2)
 hide_msg_btn.grid(row=2, column=0, columnspan=3)
 
-# Text koji prikazuje putanju do slike je readonly
+# Text widget koji prikazuje putanju do slike je readonly
 out_img_entry.configure(state="disabled")
 
 ############### FIND MESSAGE TAB #################
