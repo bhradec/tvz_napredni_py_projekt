@@ -27,8 +27,11 @@ def embed_message():
     try:
         hide_message(message, out_img_path)
         tk.messagebox.showinfo(title="Success", message="Message succesfully embeded")
-    except MessageTooLongException:
-        tk.messagebox.showerror(title="Error", message="Message is too long for given image")
+    except MessageTooLongException as exc:
+        description = "Message is too long for given image\n"
+        description += "Max text length: " + str(int(exc.img_size / 8)) + "\n"
+        description += "Given text length: " + str(int(exc.num_of_bytes / 8)) + "\n"
+        tk.messagebox.showerror(title="Error", message=description)
 
 def browse_out_img_path():
     global out_img_path

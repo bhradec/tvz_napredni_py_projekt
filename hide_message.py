@@ -5,8 +5,10 @@ from PIL import Image
 from functools import reduce
 
 class MessageTooLongException(Exception):
-    def __init__(self):
+    def __init__(self, num_of_bytes, img_size):
         super().__init__("Input message too long fro given image")
+        self.num_of_bytes = num_of_bytes
+        self.img_size = img_size 
 
 def string_to_ints(chars):
     return [ord(c) for c in chars]
@@ -20,8 +22,10 @@ def hide_message(message, img_path):
 
     # Svaki znak u poruci ima 1 bajt. Iz tog razloga zauzima
     # 8 pixela na slici.
-    if len(message) * 8 > reduce(lambda r, e: r * e, img_shape):
-        raise MessageTooLongException()
+    num_of_bytes = len(message) * 8
+    img_size = reduce(lambda r, e: r * e, img_shape)
+    if num_of_bytes > img_size:
+        raise MessageTooLongException(num_of_bytes, img_size)
 
     # Trodimenzionalna matrica izravnana u jednodimenzionalnu listu
     colors = pixels.flatten()
