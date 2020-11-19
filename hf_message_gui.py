@@ -36,6 +36,9 @@ def embed_message():
 def browse_out_img_path():
     global out_img_path
     out_img_path = tk.filedialog.askopenfilename()
+    # S obzirom na to da je text widget prethodno onemogućen
+    # potrebno ga je privremeno omogućiti i poslije pisanja
+    # ponovno onemogućiti
     out_img_entry.configure(state="normal")
     out_img_entry.delete(1.0, "end")
     out_img_entry.insert("end", out_img_path)
