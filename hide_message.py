@@ -68,6 +68,8 @@ if __name__ == "__main__":
             hide_message(message, img_path)
         except MessageTooLongException:
             print("Message is too long for given image")
+        except FileNotFoundError:
+            print("File", img_path, "does not exist")
     else:
         print("No message or image path given")
         print("Help: message_hide.py message img_path")

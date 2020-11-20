@@ -1,4 +1,5 @@
 import tkinter as tk
+import hide_message
 
 from tkinter import Label, Text, Button
 from tkinter import ttk
@@ -6,8 +7,8 @@ from tkinter import filedialog
 from tkinter import messagebox
 
 from hide_message import hide_message
-from find_message import find_message
 from hide_message import MessageTooLongException
+from find_message import find_message
 
 in_img_path = ""        # Putanja ulazne slike
 out_img_path = ""       # Putanja izlazne slike
