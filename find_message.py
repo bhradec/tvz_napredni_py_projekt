@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+import argparse
 
 from PIL import Image
 
@@ -36,10 +37,16 @@ def find_message(img_path):
     print(message)
 
 if __name__ == "__main__":
-    img_path = sys.argv[1]
+    arg_parser = argparse.ArgumentParser(description="Finds a hidden message from an image file.")
 
-    if img_path:
+    arg_parser.add_argument("img_path", help="image where the message is hidden")
+    arg_parser.add_argument("-o", "--output", help="file to write message in")
+    arguments = arg_parser.parse_args()
+
+    img_path = arguments.img_path
+    out_path = arguments.output
+
+    try:
         find_message(img_path)
-    else:
-        print("No image path given")
-        print("Help: message_find.py img_path")
+    except FileNotFoundError:
+        print("File", img_path, "does not exist")

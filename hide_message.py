@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+import argparse
 
 from PIL import Image
 from functools import reduce
@@ -60,16 +61,19 @@ def hide_message(message, img_path):
     result_image.save(img_path)
 
 if __name__ == "__main__":
-    message = sys.argv[1]
-    img_path = sys.argv[2]
+    arg_parser = argparse.ArgumentParser(description="Hides given message to an image file.")
 
-    if message and img_path:
-        try:
-            hide_message(message, img_path)
-        except MessageTooLongException:
-            print("Message is too long for given image")
-        except FileNotFoundError:
-            print("File", img_path, "does not exist")
-    else:
-        print("No message or image path given")
-        print("Help: message_hide.py message img_path")
+    arg_parser.add_argument("message", help="string/file to be hidden in the image")
+    arg_parser.add_argument("img_path", help="image where the message will be hidden")
+    arg_parser.add_argument("-f", "--file", action="store_true", help="use file instead of string")
+    arguments = arg_parser.parse_args()
+
+    message = arguments.message
+    img_path = arguments.img_path
+
+    try:
+        hide_message(message, img_path)
+    except MessageTooLongException:
+        print("Message is too long for given image")
+    except FileNotFoundError:
+        print("File", img_path, "does not exist")
