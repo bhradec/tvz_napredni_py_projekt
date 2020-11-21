@@ -3,7 +3,6 @@ import numpy as np
 
 from PIL import Image
 
-#python.exe .\find_message.py ..\test.png
 def find_message(img_path):
     input_img = Image.open(img_path)
     pixels = np.array(input_img)
