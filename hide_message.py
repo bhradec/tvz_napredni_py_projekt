@@ -9,12 +9,17 @@ class MessageTooLongException(Exception):
     def __init__(self, num_of_bytes, img_size):
         super().__init__("Input message too long fro given image")
         self.num_of_bytes = num_of_bytes
-        self.img_size = img_size 
+        self.img_size = img_size
+        # Oduzima se 1 zbog /0 na kraju
+        self.max_text_lenght = int(exc.img_size / 8)) - 1
+        self.message_lenght = int(exc.num_of_bytes / 8)) - 1
+
 
 def string_to_ints(chars):
     return [ord(c) for c in chars]
 
 def hide_message(message, img_path):
+    message += "\0"
     input_img = Image.open(img_path)
 
     # Trodimenzionalna matrica: retci * stupci * RGB (3 vrijendosti)
@@ -50,6 +55,9 @@ def hide_message(message, img_path):
             # Konačno prvi bit se stavlja na zadnje mjesto kako
             # bi se mogao napraviti XOR sa svakom bojom slike
             mask = shifted_left >> 7
+            # Zadnji bit u 0
+            colors[current_index] &= ~0b1
+            # XOR zadnjeg bita s maskom
             colors[current_index] ^= mask
             current_index += 1
 
@@ -88,7 +96,7 @@ if __name__ == "__main__":
 
     except MessageTooLongException as exc:
         print("Message is too long for given image")
-        print("Max text length: " + str(int(exc.img_size / 8)))
-        print("Given text length: " + str(int(exc.num_of_bytes / 8)))
+        print("Max text length: " + str(exc.max_text_lenght)
+        print("Given text length: " + str(exc.message_lenght)
     except FileNotFoundError:
         print("File", img_path, "does not exist")

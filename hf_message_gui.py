@@ -30,8 +30,8 @@ def embed_message():
         tk.messagebox.showinfo(title="Success", message="Message succesfully embeded")
     except MessageTooLongException as exc:
         description = "Message is too long for given image\n"
-        description += "Max text length: " + str(int(exc.img_size / 8)) + "\n"
-        description += "Given text length: " + str(int(exc.num_of_bytes / 8)) + "\n"
+        description += "Max text length: " + str(exc.max_text_lenght) + "\n"
+        description += "Given text length: " + str(exc.message_lenght) + "\n"
         tk.messagebox.showerror(title="Error", message=description)
     
 # TREBA PROVJERITI
