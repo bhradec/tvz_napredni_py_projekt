@@ -23,18 +23,18 @@ def find_message(img_path):
             message += chr(character_byte)
             character_byte = 0x00
 
-        # Uzima zadnji bit iz boje te ga invertira
+        # Uzima zadnji bit iz boje te ga invertira.
         last_byte = color & 0b00000001
         last_byte = ~last_byte
         last_byte = last_byte & 0b00000001
 
-        # Upisuje zadnji bit iz boje na zadnje mjesto charactera
+        # Upisuje zadnji bit iz boje na zadnje mjesto charactera.
         character_byte = character_byte | last_byte
 
         # Sve bitove pomice za jedno mjesto u lijevo
-        #  time dodaje nulu na desnoj strani
-        #  to radi kako bi u sljedecem loopu
-        #  na mjesto nule upisao last_byte
+        # time dodaje nulu na desnoj strani
+        # to radi kako bi u sljedecem loopu
+        # na mjesto nule upisao last_byte.
         character_byte = character_byte << 1
 
     return message
