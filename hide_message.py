@@ -76,7 +76,6 @@ if __name__ == "__main__":
         # ne nalazi sama poruka, već putanja do datoteke
         # u kojoj se nalazi poruka.
         if arguments.file:
-            
             try:
                 input_file = open(message)
                 message = file.read()
@@ -84,7 +83,7 @@ if __name__ == "__main__":
             except FileNotFoundError:
                 print("File", message, "does not exist")
                 exit()
-
+                
         hide_message(message, img_path)
 
     except MessageTooLongException as exc:
