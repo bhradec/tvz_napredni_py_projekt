@@ -14,7 +14,6 @@ class MessageTooLongException(Exception):
         self.max_text_lenght = int(self.img_size / 8) - 1
         self.message_lenght = int(self.num_of_bytes / 8) - 1
 
-
 def string_to_ints(chars):
     return [ord(c) for c in chars]
 
