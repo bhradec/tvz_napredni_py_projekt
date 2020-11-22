@@ -72,8 +72,23 @@ if __name__ == "__main__":
     img_path = arguments.img_path
 
     try:
+        # Ako je zadana --file opcija, onda se u message
+        # ne nalazi sama poruka, već putanja do datoteke
+        # u kojoj se nalazi poruka.
+        if arguments.file:
+            try:
+                input_file = open(message)
+                message = file.read()
+                input_file.close
+            except:
+                print("File", message, "does not exist")
+                exit()
+
         hide_message(message, img_path)
-    except MessageTooLongException:
+
+    except MessageTooLongException as exc:
         print("Message is too long for given image")
+        print("Max text length: " + str(int(exc.img_size / 8)))
+        print("Given text length: " + str(int(exc.num_of_bytes / 8)))
     except FileNotFoundError:
         print("File", img_path, "does not exist")
