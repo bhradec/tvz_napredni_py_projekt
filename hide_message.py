@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     except MessageTooLongException as exc:
         print("Message is too long for given image")
-        print("Max text length: " + str(exc.max_text_lenght)
-        print("Given text length: " + str(exc.message_lenght)
+        print("Max text length: " + str(exc.max_text_lenght))
+        print("Given text length: " + str(exc.message_lenght))
     except FileNotFoundError:
         print("File", img_path, "does not exist")
