@@ -59,10 +59,10 @@ def browse_out_img_path():
 def browse_in_img_path():
     global in_img_path
     in_img_path = tk.filedialog.askopenfilename()
-    out_img_entry.configure(state="normal")
+    in_img_entry.configure(state="normal")
     in_img_entry.delete(1.0, "end")
     in_img_entry.insert("end", in_img_path)
-    out_img_entry.configure(state="disabled")
+    in_img_entry.configure(state="disabled")
 
 main_window = tk.Tk()
 main_window.title("H/F message")

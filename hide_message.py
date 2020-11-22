@@ -11,8 +11,8 @@ class MessageTooLongException(Exception):
         self.num_of_bytes = num_of_bytes
         self.img_size = img_size
         # Oduzima se 1 zbog /0 na kraju
-        self.max_text_lenght = int(exc.img_size / 8) - 1
-        self.message_lenght = int(exc.num_of_bytes / 8) - 1
+        self.max_text_lenght = int(self.img_size / 8) - 1
+        self.message_lenght = int(self.num_of_bytes / 8) - 1
 
 
 def string_to_ints(chars):

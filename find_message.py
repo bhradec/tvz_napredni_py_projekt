@@ -17,7 +17,7 @@ def find_message(img_path):
         if i % 8 == 0 and i != 0:
             character_byte = character_byte >> 1
 
-            if character_byte == ord("/0"):
+            if character_byte == ord("\0"):
                 break
 
             message += chr(character_byte)
