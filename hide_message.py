@@ -17,7 +17,7 @@ class MessageTooLongException(Exception):
 def string_to_ints(chars):
     return [ord(c) for c in chars]
 
-def hide_message(message, img_path):
+def hide_message(message, img_path, output=None):
     message += "\0"
     input_img = Image.open(img_path)
 
@@ -65,14 +65,19 @@ def hide_message(message, img_path):
     # natrag u sliku
     result_pixels = colors.reshape(img_shape)
     result_image = Image.fromarray(result_pixels)
-    result_image.save(img_path)
 
+    if output:
+        result_image.save(output)
+    else:
+        result_image.save(img_path)
+        
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(description="Hides given message to an image file.")
 
     arg_parser.add_argument("message", help="string/file to be hidden in the image")
     arg_parser.add_argument("img_path", help="image where the message will be hidden")
     arg_parser.add_argument("-f", "--file", action="store_true", help="use file instead of string")
+    arg_parser.add_argument("-o", "--output", help="file to output image to")
     arguments = arg_parser.parse_args()
 
     message = arguments.message
@@ -90,8 +95,13 @@ if __name__ == "__main__":
             except FileNotFoundError:
                 print("File", message, "does not exist")
                 exit()
-                
-        hide_message(message, img_path)
+        
+        # Ako je zadana --output opcija, slika se ne upisuje
+        # u izvornu datoteku već u onu zadanu output opcijom
+        if arguments.output:
+            hide_message(message, img_path, arguments.output)
+        else:
+            hide_message(message, img_path)
 
     except MessageTooLongException as exc:
         print("Message is too long for given image")
