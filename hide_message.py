@@ -78,7 +78,7 @@ if __name__ == "__main__":
         if arguments.file:
             try:
                 input_file = open(message)
-                message = file.read()
+                message = input_file.read()
                 input_file.close
             except FileNotFoundError:
                 print("File", message, "does not exist")
