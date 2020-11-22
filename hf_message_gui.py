@@ -10,8 +10,8 @@ from hide_message import hide_message
 from hide_message import MessageTooLongException
 from find_message import find_message
 
-in_img_path = ""        # Putanja ulazne slike
 out_img_path = ""       # Putanja izlazne slike
+in_img_path = ""        # Putanja ulazne slike
 
 # Upisuje zadanu poruku na sliku koja se nalazi na zadanoj putanji
 def embed_message():
@@ -33,6 +33,17 @@ def embed_message():
         description += "Max text length: " + str(int(exc.img_size / 8)) + "\n"
         description += "Given text length: " + str(int(exc.num_of_bytes / 8)) + "\n"
         tk.messagebox.showerror(title="Error", message=description)
+    
+# TREBA PROVJERITI
+def show_message():
+    if in_img_path == "":
+        tk.messagebox.showerror(title="Error", message="No input image was selected!")
+        return
+
+    out_txt_entry.configure(state="normal")
+    out_txt_entry.delete(1.0, "end")
+    out_txt_entry.insert("end", find_message(in_img_path))
+    out_txt_entry.configure(state="disabled")
 
 def browse_out_img_path():
     global out_img_path
@@ -94,11 +105,18 @@ in_img_entry = tk.Text(find_msg_tab, height=1, width=40)
 in_img_btn = tk.Button(find_msg_tab, text="Browse", command=browse_in_img_path)
 out_txt_entry = tk.Text(find_msg_tab, height=8, width=40)
 
+# TREBA PROVJERITI
+find_msg_btn = tk.Button(find_msg_tab, text="Find message", command=show_message)
+
 find_in_label.grid(row=0, column=0)
 find_out_label.grid(row=1, column=0, sticky="n")
 in_img_entry.grid(row=0, column=1, sticky="we")
 in_img_btn.grid(row=0, column=2)
 out_txt_entry.grid(row=1, column=1, columnspan=2, sticky="we")
+
+# TREBA PROVJERITI
+find_msg_btn.grid(row=2, column=0, columnspan=3)
+
 
 # Text widget u koji se ispisuje izlazni tekst je read only
 out_txt_entry.configure(state="disabled")

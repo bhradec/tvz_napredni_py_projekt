@@ -33,8 +33,7 @@ def find_message(img_path):
         #  na mjesto nule upisao last_byte
         character_byte = character_byte << 1
 
-    print("The hiden message:")
-    print(message)
+    return message
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(description="Finds a hidden message from an image file.")
@@ -47,6 +46,7 @@ if __name__ == "__main__":
     out_path = arguments.output
 
     try:
-        find_message(img_path)
+        print("The hiden message:")
+        print(find_message(img_path))
     except FileNotFoundError:
         print("File", img_path, "does not exist")
