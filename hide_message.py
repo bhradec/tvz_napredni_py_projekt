@@ -76,11 +76,12 @@ if __name__ == "__main__":
         # ne nalazi sama poruka, već putanja do datoteke
         # u kojoj se nalazi poruka.
         if arguments.file:
+            
             try:
                 input_file = open(message)
                 message = file.read()
                 input_file.close
-            except:
+            except FileNotFoundError:
                 print("File", message, "does not exist")
                 exit()
 
