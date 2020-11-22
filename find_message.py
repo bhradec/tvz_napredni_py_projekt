@@ -46,7 +46,12 @@ if __name__ == "__main__":
     out_path = arguments.output
 
     try:
-        print("The hiden message:")
-        print(find_message(img_path))
+        message = find_message(img_path)
+        if arguments.output:  
+            output_file = open(arguments.output, "w")
+            output_file.write(message)
+            output_file.close()
+        else:
+            print(message)
     except FileNotFoundError:
         print("File", img_path, "does not exist")
