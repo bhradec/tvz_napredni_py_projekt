@@ -7,7 +7,7 @@ from functools import reduce
 
 class MessageTooLongException(Exception):
     def __init__(self, num_of_bytes, img_size):
-        super().__init__("Input message too long fro given image")
+        super().__init__("Input message too long for given image")
         self.num_of_bytes = num_of_bytes
         self.img_size = img_size
         # Oduzima se 1 zbog /0 na kraju
